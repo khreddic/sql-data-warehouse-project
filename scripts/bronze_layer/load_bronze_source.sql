@@ -9,83 +9,66 @@ Script Purpose:
 	to get a fresh load of data from each source
 ===========================================================
 */
+CREATE or ALTER  PROCEDURE bronze.load_bronze AS
+	BEGIN
+	--TRUNCATE & LOAD CRM Source Table
+	TRUNCATE TABLE bronze.crm_cust_info;
+	BULK INSERT bronze.crm_cust_info
+	FROM '<INSERT FILEPATH HERE>\cust_info.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
---TRUNCATE & LOAD CRM Source Table
-TRUNCATE TABLE bronze.crm_cust_info;
-go
+	--TRUNCATE & LOAD CRM Source Table
+	TRUNCATE TABLE bronze.crm_prd_info;
+	BULK INSERT bronze.crm_prd_info
+	FROM '<INSERT FILEPATH HERE>\prd_info.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
-BULK INSERT bronze.crm_cust_info
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
+	--TRUNCATE & LOAD CRM Source Table
+	TRUNCATE TABLE bronze.crm_sales_details;
+	BULK INSERT bronze.crm_sales_details
+	FROM '<INSERT FILEPATH HERE>\sales_details.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
---TRUNCATE & LOAD CRM Source Table
-TRUNCATE TABLE bronze.crm_prd_info;
-go
+	--TRUNCATE & LOAD ERP Source Table
+	TRUNCATE TABLE bronze.erp_cust_az12;
+	BULK INSERT bronze.erp_cust_az12
+	FROM '<INSERT FILEPATH HERE>\CUST_AZ12.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
-BULK INSERT bronze.crm_prd_info
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
+	--TRUNCATE & LOAD ERP Source Table
+	TRUNCATE TABLE bronze.erp_loc_a101;
+	BULK INSERT bronze.erp_loc_a101
+	FROM '<INSERT FILEPATH HERE>\LOC_A101.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
---TRUNCATE & LOAD CRM Source Table
-TRUNCATE TABLE bronze.crm_sales_details;
-go
+	--TRUNCATE & LOAD ERP Source Table
+	TRUNCATE TABLE bronze.erp_px_cat_g1v2;
+	BULK INSERT bronze.erp_px_cat_g1v2
+	FROM '<INSERT FILEPATH HERE>\PX_CAT_G1V2.csv'
+	WITH (
+		FIRSTROW = 2,
+		FIELDTERMINATOR = ',',
+		TABLOCK
+	);
 
-BULK INSERT bronze.crm_sales_details
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
-
---TRUNCATE & LOAD ERP Source Table
-TRUNCATE TABLE bronze.erp_cust_az12;
-go
-
-BULK INSERT bronze.erp_cust_az12
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
-
---TRUNCATE & LOAD ERP Source Table
-TRUNCATE TABLE bronze.erp_loc_a101;
-go
-
-BULK INSERT bronze.erp_loc_a101
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
-
---TRUNCATE & LOAD ERP Source Table
-TRUNCATE TABLE bronze.erp_px_cat_g1v2;
-go
-
-BULK INSERT bronze.erp_px_cat_g1v2
-FROM '<Insert Filepath here>'
-WITH (
-	FIRSTROW = 2,
-	FIELDTERMINATOR = ',',
-	TABLOCK
-);
-go
-
-
+END
