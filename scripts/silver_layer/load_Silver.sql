@@ -1,4 +1,21 @@
+/*
+===========================================================
+Stored Procedure: Load Silver Layer Script
+===========================================================
+Script Purpose:
+	This script is to Load data into all 
+	Silver Layer tables from Bronze Layer. (CRM & ERP)
+	- Truncates Silver Tables
+	- Uses INSERT INTO to transform and Load Silver layer tables
 
+Parameters:
+	None.
+	This SP does not accept nor return any values
+
+Usage Example:
+	EXEC silver.load_silver;
+===========================================================
+*/
 
 
 CREATE or ALTER PROCEDURE silver.load_silver AS
@@ -242,4 +259,5 @@ BEGIN
 		PRINT '=============================='
 	END CATCH
 	
+
 END
