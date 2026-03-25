@@ -9,6 +9,10 @@ Script Purpose:
 ===============================================================================
 */
 
+IF OBJECT_ID('gold.dim_customers','U') IS NOT NULL
+    DROP VIEW gold.dim_customers;
+GO
+
 --Create Gold Layer View: Dimension table - dim_customer
 CREATE VIEW gold.dim_customers AS (
 SELECT
@@ -72,6 +76,10 @@ on		ci.cst_key = la.cid
 --	on		ci.cst_key = la.cid
 --	ORDER BY 1, 2
 ---------------------------------------------------------------------------------------------
+IF OBJECT_ID('gold.dim_products','U') IS NOT NULL
+    DROP VIEW gold.dim_products;
+GO
+	
 CREATE VIEW gold.dim_products AS (
 SELECT
 ROW_NUMBER() OVER (ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key,
@@ -117,8 +125,11 @@ SELECT * FROM gold.dim_products
 
 
 ----------------------------------------------------------------------
+IF OBJECT_ID('gold.fact_sales','U') IS NOT NULL
+    DROP VIEW gold.fact_sales;
+GO
+	
 --Create View gold.fact_sales
-
 CREATE VIEW gold.fact_sales AS 
 SELECT
 sd.sls_ord_num AS order_number,
