@@ -5,7 +5,8 @@ DDL Script: Create Gold Veiws
 Script Purpose:
     This script creates views in the 'gold' schema, dropping existing tables 
     if they already exist.
-	  Run this script to re-define the DDL structure of 'bronze' Tables
+	Data Checks commented out 
+	  Run this script to re-define the DDL structure of 'gold' Tables
 ===============================================================================
 */
 
