@@ -1,3 +1,13 @@
+/*
+===============================================================================
+DDL Script: Create Gold Veiws
+===============================================================================
+Script Purpose:
+    This script creates views in the 'gold' schema, dropping existing tables 
+    if they already exist.
+	  Run this script to re-define the DDL structure of 'bronze' Tables
+===============================================================================
+*/
 
 --Create Gold Layer View: Dimension table - dim_customer
 CREATE VIEW gold.dim_customers AS (
